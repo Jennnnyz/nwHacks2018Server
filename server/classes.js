@@ -35,5 +35,20 @@ Game.prototype.addItem = function(item){
 	this.items.push(item);
 }
 
+Game.prototype.leaderboard = function() {
+	var leaderboard = this.users.map(x => x);
+
+	function compare(a,b) {
+		if (a.items.length < b.items.length)
+			 return -1;
+		if (a.items.length > b.items.length)
+			 return 1;
+		return 0;
+	}
+
+	leaderboard.sort(compare);
+	return leaderboard;
+}
+
 
 module.exports.Game = Game;

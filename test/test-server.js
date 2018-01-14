@@ -13,7 +13,7 @@ describe('post games', function() {
       .end((err, res) => {
           expect(res.status).to.equal(200);
           console.log(res.body);
-      })
+      });
   });
 });
 
@@ -24,7 +24,7 @@ describe('get game', function() {
       .end((err, res) => {
           expect(res.status).to.equal(200);
           console.log(res.body);
-      })
+      });
   });
 });
 
@@ -35,17 +35,18 @@ describe('remove game', function() {
       .end((err, res) => {
           expect(res.status).to.equal(200);
           console.log(res.body);
-      })
+      });
   });
 });
 
 describe('get users of game', function() {
-  it('description', () => {
+  it('description', function(done) {
       chai.request(app)
       .get('/games/0/users')
-      .end((err, res) => {
+      .end(function(err, res) {
           expect(res.status).to.equal(200);
           console.log(res.body);
-      })
+          done();
+      });
   });
 });

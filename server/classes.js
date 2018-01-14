@@ -1,14 +1,30 @@
 var User = function(userName){
 	this.userName = userName;
-	this.items = [];
+	this.items = {};
 }
 
-User.prototype.foundItem = function(item){
-	this.items.push(item);
+User.prototype.foundItem = function(itemName){
+	var newItem = new Item(itemName);
+	this.items[itemName] = newItem;
+	// this.items.push(newItem);
+	// return this.items.indexOf(newItem);
 }
 
-User.prototype.hasItem = function(item){
-	return this.items.indexOf(item) > -1;
+User.prototype.hasItem = function(itemName){
+	// var found = false;
+	// this.items.forEach((item) => {
+	// 	if(item.name == itemName) {
+	// 		found = true;
+	// 		return;
+	// 	}
+	// });
+	// return found;
+	if(this.items[itemName] == null) {
+		return false;
+	}
+	else {
+		return true;
+	}
 }
 
 module.exports.User = User;
@@ -31,16 +47,23 @@ Game.prototype.changeStatus = function(status){
 	this.status = status;
 }
 
-Game.prototype.addUser = function(user){
-	this.users.push(user);
+Game.prototype.addUser = function(username){
+	var newUser = new User(username);
+	this.users[username] = newUser;
 }
 
-Game.prototype.addItem = function(item){
-	this.items.push(item);
+Game.prototype.addItem = function(itemName){
+	var newItem = new Item(itemName);
+	this.items[itemName] = newItem;
 }
 
-Game.prototype.hasItem = function(item){
-	return this.items.indexOf(item) > -1;
+Game.prototype.hasItem = function(itemName){
+	if(this.items[itemName] == null) {
+		return false;
+	}
+	else {
+		return true;
+	}
 }
 
 Game.prototype.getLeaderboard = function() {

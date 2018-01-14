@@ -119,7 +119,10 @@ app.get('/games/:gameId/users/:userId/items/:itemId', function(request, response
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  response.json(request.params.itemId);
+  let itemId = request.params.itemId;
+  let gameId = request.params.gameId;
+  let userId = request.params.userId;
+  response.json(game[gameId].users[userId].items[itemId]);
 })
 
 app.get('/games/:gameId/items', function(request, response) {

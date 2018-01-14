@@ -5,7 +5,7 @@ var app = express();
 var games = [];
 var users = [];
 var status = ["Ongoing","Finished","Pending"]
-// let status = {ongoing: "Ongoing", finished: "Finished", pending: "Pending"};
+// var status = {ongoing: "Ongoing", finished: "Finished", pending: "Pending"};
 
 
 var user1 = new classes.User("Jenny");
@@ -72,7 +72,7 @@ app.get('/games/:gameId/users', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  let gameId = request.params.gameId;
+  var gameId = request.params.gameId;
   // console.log(games[gameId].users);
   response.json(games[gameId].users);
 })
@@ -81,7 +81,7 @@ app.post('/games/:gameId/users', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  let gameId = request.params.gameId;
+  var gameId = request.params.gameId;
   game[gameId].users.push(request.body.username);
   response.status(200).send("Successful");
 })
@@ -90,8 +90,8 @@ app.get('/games/:gameId/users/:userId', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  let gameId = request.params.gameId;
-  let userId = request.params.username;
+  var gameId = request.params.gameId;
+  var userId = request.params.username;
   response.json(game[gameId].users[userId]);
 })
 
@@ -99,8 +99,8 @@ app.get('/games/:gameId/users/:userId/items', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  let gameId = request.params.gameId;
-  let userId = request.params.userId;
+  var gameId = request.params.gameId;
+  var userId = request.params.userId;
   response.json(game[gameId].users[userId].items);
 })
 
@@ -108,8 +108,8 @@ app.post('/games/:gameId/users/:userId/items', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  let gameId = request.params.gameId;
-  let userId = request.params.userId;
+  var gameId = request.params.gameId;
+  var userId = request.params.userId;
   game[gameId].users[userId].items.push(request.body.itemName);
   response.json(game[gameId].users[userId].items.indexOf(request.body.itemName));
   response.status(200).send("Successful");
@@ -119,9 +119,9 @@ app.get('/games/:gameId/users/:userId/items/:itemId', function(request, response
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  let itemId = request.params.itemId;
-  let gameId = request.params.gameId;
-  let userId = request.params.userId;
+  var itemId = request.params.itemId;
+  var gameId = request.params.gameId;
+  var userId = request.params.userId;
   response.json(game[gameId].users[userId].items[itemId]);
 })
 
@@ -129,7 +129,7 @@ app.get('/games/:gameId/items', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  let gameId = request.params.gameId;
+  var gameId = request.params.gameId;
   response.json(games[gameId].items);
 })
 
@@ -137,17 +137,19 @@ app.post('/games/:gameId/items', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  let gameId = request.params.gameId;
-  games[gameId].items.addItem(request.body.itemname);
+  var gameId = request.params.gameId;
+  games[gameId].items.addItem(request.body.itemName);
   response.status(200).send("Successful");
+  // TODO: send back index
 })
 
 app.get('/games/:gameId/items/:itemId', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  let gameId = request.params.gameId;
-  let itemId = request.params.itemId;
+  var gameId = request.params.gameId;
+  var itemId = request.params.itemId;
+  //TODO: access index by itemId
   response.json(games[gameId].items.itemId);
 })
 

@@ -15,6 +15,7 @@ module.exports.User = User;
 
 var Item = function(name){
 	this.name = name;
+	this.id = "animal_"+name;
 }
 
 module.exports.Item = Item;
@@ -43,7 +44,7 @@ Game.prototype.removeItem = function(item){
 	var items = this.items;
 	var index;
 	for(var i = 0; i < items.length; i++){
-		if(items[i].name == item){
+		if(items[i].id == item){
 			index = i;
 		}
 	}

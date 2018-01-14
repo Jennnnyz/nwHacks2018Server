@@ -142,6 +142,16 @@ app.post('/games/:gameId/items', function(request, response) {
   response.status(200).send(request);
 })
 
+app.get('/games/:gameId/remove/:item', function(request, response) {
+
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  var gameId = request.params.gameId;
+  var item = request.params.item;
+  games[gameId].removeItem(item);
+  response.status(200).send(request);
+})
+
 app.get('/games/:gameId/items/:itemId', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");

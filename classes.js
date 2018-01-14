@@ -44,10 +44,9 @@ Game.prototype.removeItem = function(item){
 	var items = this.items;
 	var index;
 	for(var i = 0; i < items.length; i++){
-		//if(items[i].id == item){
-		//	index = i;
-		//}
-		items[i].name = item;
+		if(items[i].id == item){
+			index = i;
+		}
 	}
 
 	if(index){

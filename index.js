@@ -149,7 +149,7 @@ app.get('/games/:gameId/remove/:item', function(request, response) {
   var gameId = request.params.gameId;
   var item = request.params.item;
   games[gameId].removeItem(item);
-  response.status(200).send(request);
+  response.json(games[gameId]);
 })
 
 app.get('/games/:gameId/items/:itemId', function(request, response) {

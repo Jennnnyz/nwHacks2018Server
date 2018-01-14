@@ -12,7 +12,7 @@ var users1 = [user1];
 var item1 = new classes.Item("cat");
 var item2 = new classes.Item("dog");
 var items1 = [item1, item2];
-var game1 = new classes.Game(games.length+1, "nwHacks2018",status[0], users1, items1);
+var game1 = new classes.Game(games.length, "nwHacks2018",status[0], users1, items1);
 
 
 games.push(game1);
@@ -34,9 +34,12 @@ app.get('/games', function(request, response) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var gameNames = [];
-  for(var i = 0; i < games.length; i++){
-  		gameNames.push(games[i].name);
-  }
+  // for(var i = 0; i < games.length; i++){
+  // 		gameNames.push(games[i].name);
+  // }
+  games.forEach(game => {
+      gameNames.push(game.name);
+  })
   response.json(gameNames);
 })
 
@@ -44,10 +47,9 @@ app.get('/games', function(request, response) {
 app.post('/games', function(request, response) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  const gameId = games.length+1;
-  console.log(request.body);
-  games.push(new classes.Game(games.length+1, request.body.name, status[2],[],[]));
-  console.log(games);
+  const gameId = games.length;
+  games[gameId] = new classes.Game(games.length, request.body.name, status[2],[],[]);
+  // games.push(new classes.Game(games.length+1, request.body.name, status[2],[],[]));
   response.json(gameId);
 })
 
@@ -56,13 +58,16 @@ app.get('/games/:gameId', function(request, response) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var gameId = request.params.gameId;
-  response.json(games[gameId-1])
+  console.log(games[gameId]);
+  response.json(games[gameId])
 })
 
-app.post('/games/:gameId', function(request, response) {
+app.delete('/games/:gameId', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  delete games[request.params.gameId];
+  console.log(games);
   response.json(request.params.gameId);
 })
 

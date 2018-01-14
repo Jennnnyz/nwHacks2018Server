@@ -35,5 +35,23 @@ Game.prototype.addItem = function(item){
 	this.items.push(item);
 }
 
+Game.prototype.getLeaderboard = function() {
+	var leaderboard = this.users.map(function(x){
+		var obj = {"name": x.userName, "points": x.items.length};
+		return obj;
+	});
+
+	function compare(a,b) {
+		if (a.points > b.points)
+			 return -1;
+		if (a.points < b.points)
+			 return 1;
+		return 0;
+	}
+
+	leaderboard.sort(compare);
+	return leaderboard;
+}
+
 
 module.exports.Game = Game;

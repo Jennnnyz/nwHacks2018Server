@@ -14,7 +14,6 @@ var item2 = new classes.Item("dog");
 var items1 = [item1, item2];
 var game1 = new classes.Game(games.length, "nwHacks2018",status[0], users1, items1);
 
-
 games.push(game1);
 
 /*-----------------------------request handling-------------------------------------*/
@@ -92,13 +91,6 @@ app.get('/games/:gameId/users/:userId', function(request, response) {
   response.json(request.params.userId);
 })
 
-app.post('/games/:gameId/users/:userId', function(request, response) {
-
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  response.json(request.params.userId);
-})
-
 app.get('/games/:gameId/users/:userId/items', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
@@ -120,13 +112,6 @@ app.get('/games/:gameId/users/:userId/items/:itemId', function(request, response
   response.json(request.params.itemId);
 })
 
-app.post('/games/:gameId/users/:userId/items/:itemId', function(request, response) {
-
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  response.json(request.params.itemId);
-})
-
 app.get('/games/:gameId/items', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
@@ -142,13 +127,6 @@ app.post('/games/:gameId/items', function(request, response) {
 })
 
 app.get('/games/:gameId/items/:itemId', function(request, response) {
-
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  response.json(request.params.itemId);
-})
-
-app.post('/games/:gameId/items/:itemId', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

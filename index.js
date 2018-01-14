@@ -157,20 +157,6 @@ app.get('/games/:gameId/leaderboard', function(request, response) {
   response.json(leaderboard);
 })
 
-app.post('/games/:gameId/users/:userId/:category', function(request, response){
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  let gameId = request.params.gameId;
-  let userId = request.params.userId;
-  let category = request.params.category;
-  let game = games[gameId];
-  let user = game.users[userId];
-  if(game.hasItem(category) && !user.hasItem(category)){
-    user.foundItem(category);
-  }
-  response.status(200).send("Successful");
-})
-
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 })

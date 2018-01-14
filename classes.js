@@ -7,10 +7,6 @@ User.prototype.foundItem = function(item){
 	this.items.push(item);
 }
 
-User.prototype.hasItem = function(item){
-	return this.items.indexOf(item) > -1;
-}
-
 module.exports.User = User;
 
 var Item = function(name){
@@ -37,10 +33,6 @@ Game.prototype.addUser = function(user){
 
 Game.prototype.addItem = function(item){
 	this.items.push(item);
-}
-
-Game.prototype.hasItem = function(item){
-	return this.items.indexOf(item) > -1;
 }
 
 Game.prototype.getLeaderboard = function() {

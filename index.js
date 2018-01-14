@@ -1,5 +1,22 @@
 var express = require('express');
+var classes = require("./classes");
 var app = express();
+/*-----------------------------variables------------------------------------*/
+var games = [];
+var users = [];
+var status = ["Ongoing","Finished","Pending"]
+
+var user1 = new classes.User("Jenny");
+var users1 = [user1];
+var item1 = new classes.Item("cat");
+var item2 = new classes.Item("dog");
+var items1 = [item1, item2];
+var game1 = new classes.Game(games.length+1, "nwHacks2018",status[0], users1, items1);
+
+games.push(game1);
+
+/*-----------------------------request handling-------------------------------------*/
+
 
 app.set('port', (process.env.PORT || 1337));
 app.use(express.static(__dirname + '/public'));
@@ -8,7 +25,11 @@ app.get('/games', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  response.json("games");
+  var gameNames = [];
+  for(var i = 0; i < games.length; i++){
+  		gameNames.push(games[i].name);
+  }
+  response.json(gameNames);
 })
 
 app.post('/games', function(request, response) {
@@ -22,7 +43,8 @@ app.get('/games/:gameId', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  response.json(request.params.gameId);
+  var gameId = request.params.gameId;
+  response.json(games[gameId-1])
 })
 
 app.post('/games/:gameId', function(request, response) {

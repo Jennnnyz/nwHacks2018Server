@@ -1,7 +1,7 @@
     //To process the image
-    private String process() throws VisionServiceException, IOException {
+    private AnalysisResult process() throws VisionServiceException, IOException {
         Gson gson = new Gson();
-        String[] features = {"ImageType", "Color", "Faces", "Adult", "Categories"};
+        String[] features = {"Categories"};
         String[] details = {};
 
         // Put the image into an input stream for detection.
@@ -10,10 +10,7 @@
 
         AnalysisResult v = this.client.analyzeImage(inputStream, features, details);
 
-        String result = gson.toJson(v);
-        Log.d("result", result);
-
-        return result;
+        return v;
     }
 
 //To create the client
@@ -23,4 +20,6 @@
 
 //To get the category
 AnalysisResult v = process();
-Category[] = v.Categories;
+Category[] categories = v.Categories;
+/* send server the cateogry with the highest accuracy*/
+

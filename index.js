@@ -138,8 +138,8 @@ app.post('/games/:gameId/items', function(request, response) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var gameId = request.params.gameId;
-  games[gameId].removeItem(JSON.stringify(request));
-  response.status(200).send("Successful");
+  //games[gameId].removeItem(JSON.stringify(request));
+  response.status(200).send(request);
 })
 
 app.get('/games/:gameId/items/:itemId', function(request, response) {

@@ -35,13 +35,16 @@ Game.prototype.addItem = function(item){
 	this.items.push(item);
 }
 
-Game.prototype.leaderboard = function() {
-	var leaderboard = this.users.map(x => x);
+Game.prototype.getLeaderboard = function() {
+	var leaderboard = this.users.map(function(x){
+		var obj = {"name": x.userName, "points": x.items.length};
+		return obj;
+	});
 
 	function compare(a,b) {
-		if (a.items.length < b.items.length)
+		if (a.points > b.points)
 			 return -1;
-		if (a.items.length > b.items.length)
+		if (a.points < b.points)
 			 return 1;
 		return 0;
 	}

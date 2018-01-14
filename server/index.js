@@ -8,9 +8,11 @@ var status = ["Ongoing","Finished","Pending"]
 // let status = {ongoing: "Ongoing", finished: "Finished", pending: "Pending"};
 
 var user1 = new classes.User("Jenny");
-var users1 = [user1];
+var user2 = new classes.User("Bob");
+var users1 = [user1, user2];
 var item1 = new classes.Item("cat");
 var item2 = new classes.Item("dog");
+user2.foundItem(item1);
 var items1 = [item1, item2];
 var game1 = new classes.Game(games.length, "nwHacks2018",status[0], users1, items1);
 
@@ -143,14 +145,16 @@ app.get('/games/:gameId/items/:itemId', function(request, response) {
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   let gameId = request.params.gameId;
   let itemId = request.params.itemId;
-  response.json(games[gameId].items.itemId);
+  response.json(games[gameId].items[itemId]);
 })
 
 app.get('/games/:gameId/leaderboard', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  response.json(games[gameId].leaderboard());
+  let gameId = request.params.gameId;
+  var leaderboard = games[gameId].getLeaderboard();
+  response.json(leaderboard);
 })
 
 app.listen(app.get('port'), function() {

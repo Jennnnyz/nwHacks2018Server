@@ -111,6 +111,7 @@ app.post('/games/:gameId/users/:userId/items', function(request, response) {
   let gameId = request.params.gameId;
   let userId = request.params.userId;
   game[gameId].users[userId].items.push(request.body.itemName);
+  response.json(game[gameId].users[userId].items.indexOf(request.body.itemName));
   response.status(200).send("Successful");
 })
 

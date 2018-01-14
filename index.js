@@ -135,7 +135,7 @@ app.post('/games/:gameId/items', function(request, response) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var gameId = request.params.gameId;
-  games[gameId].items.addItem(request.body.itemname);
+  games[gameId].items.removeItem(request.body.itemname);
   response.status(200).send("Successful");
 })
 

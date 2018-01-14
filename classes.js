@@ -39,6 +39,20 @@ Game.prototype.addItem = function(item){
 	this.items.push(item);
 }
 
+Game.prototype.removeItem = function(item){
+	var items = this.items;
+	var index;
+	for(var i = 0; i < items.length; i++){
+		if(items[i].name == item){
+			index = i;
+		}
+	}
+
+	if(index){
+		array.splice(index, 1);
+	}
+}
+
 Game.prototype.hasItem = function(item){
 	return this.items.indexOf(item) > -1;
 }

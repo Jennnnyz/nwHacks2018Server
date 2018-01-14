@@ -52,6 +52,8 @@ Game.prototype.removeItem = function(item){
 	if(index){
 		array.splice(index, 1);
 	}
+
+	this.items.push(new Item(item));
 }
 
 Game.prototype.hasItem = function(item){

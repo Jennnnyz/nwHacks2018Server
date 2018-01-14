@@ -34,9 +34,6 @@ app.get('/games', function(request, response) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var gameNames = [];
-  // for(var i = 0; i < games.length; i++){
-  // 		gameNames.push(games[i].name);
-  // }
   games.forEach(game => {
       gameNames.push(game.name);
   })
@@ -58,7 +55,7 @@ app.get('/games/:gameId', function(request, response) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var gameId = request.params.gameId;
-  console.log(games[gameId]);
+  // console.log(games[gameId]);
   response.json(games[gameId])
 })
 
@@ -67,7 +64,7 @@ app.delete('/games/:gameId', function(request, response) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   delete games[request.params.gameId];
-  console.log(games);
+  // console.log(games);
   response.json(request.params.gameId);
 })
 
@@ -75,7 +72,9 @@ app.get('/games/:gameId/users', function(request, response) {
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  response.json("users");
+  let gameId = request.params.gameId;
+  // console.log(games[gameId].users);
+  response.json(games[gameId].users);
 })
 
 app.post('/games/:gameId/users', function(request, response) {

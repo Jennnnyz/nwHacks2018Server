@@ -1,6 +1,7 @@
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var app = require('../server');
+var expect = require('chai').expect;
 
 chai.use(chaiHttp);
 
@@ -10,6 +11,7 @@ describe('post games', function() {
       .post('/games')
       .send({'name':'testtest'})
       .end((err, res) => {
+          expect(res.status).to.equal(200);
           console.log(res.body);
       })
   });
@@ -20,6 +22,7 @@ describe('get game', function() {
       chai.request(app)
       .get('/games/1')
       .end((err, res) => {
+          expect(res.status).to.equal(200);
           console.log(res.body);
       })
   });
@@ -30,6 +33,18 @@ describe('remove game', function() {
       chai.request(app)
       .del('/games/1')
       .end((err, res) => {
+          expect(res.status).to.equal(200);
+          console.log(res.body);
+      })
+  });
+});
+
+describe('get users of game', function() {
+  it('description', () => {
+      chai.request(app)
+      .get('/games/0/users')
+      .end((err, res) => {
+          expect(res.status).to.equal(200);
           console.log(res.body);
       })
   });

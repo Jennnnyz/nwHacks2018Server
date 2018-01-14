@@ -10,10 +10,13 @@ var status = ["Ongoing","Finished","Pending"]
 var user1 = new classes.User("Jenny");
 var user2 = new classes.User("Bob");
 var users1 = [user1, user2];
-var item1 = new classes.Item("cat");
-var item2 = new classes.Item("dog");
+var item1 = new classes.Item("animal_cat");
+var item2 = new classes.Item("animal_dog");
+var item3 = new classes.Item("animal_fish");
+var item4 = new classes.Item("animal_bird");
+var item5 = new classes.Item("animal_squirrel");
 user2.foundItem(item1);
-var items1 = [item1, item2];
+var items1 = [item1, item2, item3, item4, item5];
 var game1 = new classes.Game(games.length, "nwHacks2018",status[0], users1, items1);
 
 games.push(game1);

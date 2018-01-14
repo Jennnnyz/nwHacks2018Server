@@ -138,7 +138,7 @@ app.post('/games/:gameId/items', function(request, response) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var gameId = request.params.gameId;
-  games[gameId].items.addItem(request.body.itemName);
+  response.json(games[gameId].items.addItem(request.body.itemName));
   response.status(200).send("Successful");
   // TODO: send back index
 })
@@ -150,7 +150,7 @@ app.get('/games/:gameId/items/:itemId', function(request, response) {
   var gameId = request.params.gameId;
   var itemId = request.params.itemId;
   //TODO: access index by itemId
-  response.json(games[gameId].items.itemId);
+  response.json(games[gameId].items[itemId]);
 })
 
 app.get('/games/:gameId/leaderboard', function(request, response) {

@@ -37,6 +37,7 @@ Game.prototype.addUser = function(user){
 
 Game.prototype.addItem = function(item){
 	this.items.push(item);
+	return this.items.indexOf(item);
 }
 
 Game.prototype.hasItem = function(item){
